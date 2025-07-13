@@ -26,6 +26,7 @@ local M = {}
             params,
             vim.lsp.handlers["textDocument/rename"]
         )
+        vim.cmd("wa")
     end
 end
 
