@@ -8,11 +8,11 @@ This is a neovim plugin to rename parameters, variables, functions, and more in 
 
 Using vim-plug:
 ```
-Plug 'JefferyBoy/renamer.nvim'
+Plug 'Paprykojad/renamer.nvim'
 ```
 Using lazy.nvim
 ```
-use {'JefferyBoy/renamer.nvim'}
+use {'Paprykojad/renamer.nvim'}
 ```
 
 ## Commands

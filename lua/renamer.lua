@@ -1,14 +1,32 @@
 -- 变量重命名
 local M = {}
 
-local rename = function(old_name)
-	local newName = vim.trim(vim.fn.getline("."))
-  vim.api.nvim_buf_delete(0, { force = true })
-	if #newName > 0 and newName ~= old_name then
-		local params = vim.lsp.util.make_position_params()
-		params.newName = newName
-		vim.lsp.buf_request(0, "textDocument/rename", params)
-	end
+-- local rename = function(old_name)
+    -- 	local newName = vim.trim(vim.fn.getline("."))
+    --   vim.api.nvim_buf_delete(0, { force = true })
+    -- 	if #newName > 0 and newName ~= old_name then
+    -- 		local params = vim.lsp.util.make_position_params()
+    -- 		params.newName = newName
+    -- 		vim.lsp.buf_request(0, "textDocument/rename", params)
+    -- 	end
+    -- end
+    --
+
+    local rename = function(old_name)
+        local newName = vim.trim(vim.fn.getline("."))
+        -- close the floating input buffer
+        vim.api.nvim_buf_delete(0, { force = true })
+
+        if #newName > 0 and newName ~= old_name then
+            local params = vim.lsp.util.make_position_params()
+            params.newName = newName
+            -- either use the default handler:
+            vim.lsp.buf_request(0,
+            "textDocument/rename",
+            params,
+            vim.lsp.handlers["textDocument/rename"]
+        )
+    end
 end
 
 M.rename_current_cursor_field = function()
